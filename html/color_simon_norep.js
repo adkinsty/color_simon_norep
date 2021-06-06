@@ -160,7 +160,7 @@ function experimentInit() {
   instruct_text_simon = new visual.TextStim({
     win: psychoJS.window,
     name: 'instruct_text_simon',
-    text: 'You are about to begin a block of practice trials in a simple color response game.\n\nIn each trial, you will stare at a white cross in the center of the screen.\n\nAt a random time during the trial, a colored circle will appear on the right or left side of the screen. You will next press a key to report the color of the circle. The trial number will be displayed in the upper right corner at the start of each trial.\n\nOn ODD numbered trials (1, 3, 5, and so on) you will see a GREEN or ORANGE circle and you will press the W or O key with your INDEX finger. \n\n* If the circle is BLUE, press the W key with your LEFT POINTER finger. \n* If the circle is ORANGE, press the O key with your RIGHT POINTER finger.\n\nOn EVEN numbered trials (2, 4, 6, and so on) you will see a BLUE or RED circle and you will press the Q or P key with your MIDDLE finger. \n\n* If the circle is ORANGE, press the O key with your RIGHT MIDDLE finger.\n* If the circle is BLUE, press the W key with your LEFT MIDDLE finger. \n\nAfter each trial, you will receive feedback about how you did. Please try to respond as quickly and accurately as you can.\n\nWhen you are ready to begin the block of practice trials, please press the SPACE BAR. ',
+    text: 'You are about to begin a block of practice trials in a simple color response game.\n\nIn each trial, you will stare at a white cross in the center of the screen.\n\nAt a random time during the trial, a colored circle will appear on the right or left side of the screen. You will next press a key to report the color of the circle. The trial number will be displayed in the upper right corner at the start of each trial.\n\nOn ODD numbered trials (1, 3, 5, and so on) you will see a GREEN or ORANGE circle and you will press the W or O key with your INDEX finger. \n\n* If the circle is GREEN, press the W key with your LEFT POINTER finger. \n* If the circle is ORANGE, press the O key with your RIGHT POINTER finger.\n\nOn EVEN numbered trials (2, 4, 6, and so on) you will see a BLUE or RED circle and you will press the Q or P key with your MIDDLE finger. \n\n* If the circle is BLUE, press the Q key with your LEFT MIDDLE finger. \n* If the circle is RED, press the P key with your RIGHT MIDDLE finger.\n\nAfter each trial, you will receive feedback about how you did. Please try to respond as quickly and accurately as you can.\n\nWhen you are ready to begin the block of practice trials, please press the SPACE BAR. ',
     font: 'Arial',
     units: undefined, 
     pos: [0, 0], height: 0.02,  wrapWidth: undefined, ori: 0,
@@ -299,7 +299,7 @@ function experimentInit() {
   instruct_text = new visual.TextStim({
     win: psychoJS.window,
     name: 'instruct_text',
-    text: 'You are about to begin a block of trials in a timed color response game. You will respond to colors like in the first block of practice trials, but you will need to time your responses perfectly, like in the second block of practice trials.\n\nAs in the first practice block, at a random time during the trial, a colored circle will appear on the right or left side of the screen. You will press a key to report the color of the circle.\n\nOn ODD numbered trials (1, 3, 5, and so on) you will see a GREEN or ORANGE circle and you will press the W or O key with your INDEX finger. \n\n* If the circle is BLUE, press the W key with your LEFT POINTER finger. \n* If the circle is ORANGE, press the O key with your RIGHT POINTER finger.\n\nOn EVEN numbered trials (2, 4, 6, and so on) you will see a BLUE or RED circle and you will press the Q or P key with your MIDDLE finger. \n\n* If the circle is ORANGE, press the O key with your RIGHT MIDDLE finger.\n* If the circle is BLUE, press the W key with your LEFT MIDDLE finger. \n\nAs in the second practice block, each trial you will see a black cross in the center of the screen. The cross will turn into a black dot that flashes three times. After the third flash, a WHITE DOT will appear at the center of the screen.\n\nPlease respond exactly when the WHITE DOT appears.\n\nWhen you are ready to begin the first block, please press the SPACE BAR. ',
+    text: 'You are about to begin a block of trials in a timed color response game. You will respond to colors like in the first block of practice trials, but you will need to time your responses perfectly, like in the second block of practice trials.\n\nAs in the first practice block, at a random time during the trial, a colored circle will appear on the right or left side of the screen. You will press a key to report the color of the circle. \n\nOn ODD numbered trials (1, 3, 5, and so on) you will see a GREEN or ORANGE circle and you will press the W or O key with your INDEX finger. \n\n* If the circle is GREEN, press the W key with your LEFT POINTER finger. \n* If the circle is ORANGE, press the O key with your RIGHT POINTER finger.\n\nOn EVEN numbered trials (2, 4, 6, and so on) you will see a BLUE or RED circle and you will press the Q or P key with your MIDDLE finger. \n\n* If the circle is BLUE, press the Q key with your LEFT MIDDLE finger. \n* If the circle is RED, press the P key with your RIGHT MIDDLE finger.\n\nAs in the second practice block, each trial you will see a black cross in the center of the screen. The cross will turn into a black dot that flashes three times. After the third flash, a WHITE DOT will appear at the center of the screen.\n\nPlease respond exactly when the WHITE DOT appears.\n\nWhen you are ready to begin the first block, please press the SPACE BAR. ',
     font: 'Arial',
     units: undefined, 
     pos: [0, 0], height: 0.02,  wrapWidth: undefined, ori: 0,
@@ -723,6 +723,8 @@ function blocksLoopEnd() {
 
 var _trial_resp_simon_allKeys;
 var target_onset;
+var target_resp;
+var target_color;
 var trial_train_simonComponents;
 function trial_train_simonRoutineBegin(snapshot) {
   return function () {
@@ -741,6 +743,14 @@ function trial_train_simonRoutineBegin(snapshot) {
     target_simon.setPos(eval(target_pos));
     target_onset = Math.random() * (1 - 0) + 0;
     train_trial_num = train_trial_num + 1;
+    
+    if (trial_num % 2 === 0) {
+        target_resp = even_target_resp;
+        target_color = even_target_color;
+    } else {
+        target_resp = odd_target_resp;
+        target_color = odd_target_color; 
+    }
     // keep track of which components have finished
     trial_train_simonComponents = [];
     trial_train_simonComponents.push(train_trial_counter);
@@ -1536,8 +1546,6 @@ function instructionsRoutineEnd(snapshot) {
 
 
 var _trial_resp_allKeys;
-var target_resp;
-var target_color;
 var trialComponents;
 function trialRoutineBegin(snapshot) {
   return function () {
@@ -1557,16 +1565,12 @@ function trialRoutineBegin(snapshot) {
     target_onset = Math.random() + 1.5;
     trial_num = trial_num + 1;
     
-    if (target_resp == 'w') {
-        if (trial_num % 2 == 0) {
-            target_resp = 'q';
-            target_color = 'blue';
-        }
+    if (trial_num % 2 === 0) {
+        target_resp = even_target_resp;
+        target_color = even_target_color;
     } else {
-        if (trial_num % 2 == 0) {
-            target_resp = 'p';
-            target_color = 'red';
-        }
+        target_resp = odd_target_resp;
+        target_color = odd_target_color; 
     }
     // keep track of which components have finished
     trialComponents = [];

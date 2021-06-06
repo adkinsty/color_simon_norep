@@ -1,5 +1,5 @@
-﻿target_color,target_pos,target_resp
-orange,"[-0.33,0]",p
-orange,"[0.33,0]",p
-blue,"[-0.33,0]",w
-blue,"[0.33,0]",w
+﻿target_pos,odd_target_resp,odd_target_color,even_target_color,even_target_resp
+"[-0.33,0]",o,orange,red,p
+"[0.33,0]",o,orange,red,p
+"[-0.33,0]",w,green,blue,q
+"[0.33,0]",w,green,blue,q
