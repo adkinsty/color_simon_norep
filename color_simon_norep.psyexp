@@ -92,7 +92,7 @@
         <Param name="name" updates="None" val="trial_counter" valType="code"/>
         <Param name="opacity" updates="constant" val="" valType="num"/>
         <Param name="ori" updates="constant" val="0" valType="num"/>
-        <Param name="pos" updates="constant" val="(.75,.75)" valType="list"/>
+        <Param name="pos" updates="constant" val="(.5,.5)" valType="list"/>
         <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
         <Param name="startEstim" updates="None" val="" valType="num"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
@@ -244,10 +244,10 @@
         <Param name="contrast" updates="constant" val="1" valType="num"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
-        <Param name="fillColor" updates="set every repeat" val="$target_color" valType="str"/>
+        <Param name="fillColor" updates="set every frame" val="$target_color" valType="str"/>
         <Param name="fillColorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="interpolate" updates="constant" val="linear" valType="str"/>
-        <Param name="lineColor" updates="set every repeat" val="$target_color" valType="str"/>
+        <Param name="lineColor" updates="set every frame" val="$target_color" valType="str"/>
         <Param name="lineColorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="lineWidth" updates="constant" val="1" valType="code"/>
         <Param name="nVertices" updates="constant" val="100" valType="int"/>
@@ -548,7 +548,7 @@
         <Param name="name" updates="None" val="train_trial_counter" valType="code"/>
         <Param name="opacity" updates="constant" val="" valType="num"/>
         <Param name="ori" updates="constant" val="0" valType="num"/>
-        <Param name="pos" updates="constant" val="(.75,.75)" valType="list"/>
+        <Param name="pos" updates="constant" val="(.5,.5)" valType="list"/>
         <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
         <Param name="startEstim" updates="None" val="" valType="num"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
@@ -592,10 +592,10 @@
         <Param name="contrast" updates="constant" val="1" valType="num"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="1" valType="code"/>
-        <Param name="fillColor" updates="set every repeat" val="$target_color" valType="str"/>
+        <Param name="fillColor" updates="set every frame" val="$target_color" valType="str"/>
         <Param name="fillColorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="interpolate" updates="constant" val="linear" valType="str"/>
-        <Param name="lineColor" updates="set every repeat" val="$target_color" valType="str"/>
+        <Param name="lineColor" updates="set every frame" val="$target_color" valType="str"/>
         <Param name="lineColorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="lineWidth" updates="constant" val="1" valType="code"/>
         <Param name="nVertices" updates="constant" val="100" valType="int"/>
@@ -922,9 +922,9 @@
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="random" valType="str"/>
-      <Param name="nReps" updates="None" val="1" valType="code"/>
+      <Param name="nReps" updates="None" val="10" valType="code"/>
       <Param name="name" updates="None" val="trials_train_simon" valType="code"/>
-      <Param name="random seed" updates="None" val="10" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
     <Routine name="trial_train_simon"/>
     <Routine name="feedback"/>
@@ -963,7 +963,7 @@
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="random" valType="str"/>
-      <Param name="nReps" updates="None" val="1" valType="code"/>
+      <Param name="nReps" updates="None" val="10" valType="code"/>
       <Param name="name" updates="None" val="trials" valType="code"/>
       <Param name="random seed" updates="None" val="15" valType="code"/>
     </LoopInitiator>

@@ -178,7 +178,7 @@ function experimentInit() {
     text: '',
     font: 'Open Sans',
     units: undefined, 
-    pos: [0.75, 0.75], height: 0.02,  wrapWidth: undefined, ori: 0.0,
+    pos: [0.5, 0.5], height: 0.02,  wrapWidth: undefined, ori: 0.0,
     color: new util.Color('white'),  opacity: undefined,
     depth: 0.0 
   });
@@ -317,7 +317,7 @@ function experimentInit() {
     text: '',
     font: 'Open Sans',
     units: undefined, 
-    pos: [0.75, 0.75], height: 0.02,  wrapWidth: undefined, ori: 0.0,
+    pos: [0.5, 0.5], height: 0.02,  wrapWidth: undefined, ori: 0.0,
     color: new util.Color('white'),  opacity: undefined,
     depth: 0.0 
   });
@@ -577,10 +577,10 @@ function trials_train_simonLoopBegin(trials_train_simonLoopScheduler) {
   // set up handler to look after randomisation of conditions etc
   trials_train_simon = new TrialHandler({
     psychoJS: psychoJS,
-    nReps: 1, method: TrialHandler.Method.RANDOM,
+    nReps: 10, method: TrialHandler.Method.RANDOM,
     extraInfo: expInfo, originPath: undefined,
     trialList: 'conditions.csv',
-    seed: 10, name: 'trials_train_simon'
+    seed: undefined, name: 'trials_train_simon'
   });
   psychoJS.experiment.addLoop(trials_train_simon); // add the loop to the experiment
   currentLoop = trials_train_simon;  // we're now the current loop
@@ -682,7 +682,7 @@ function trialsLoopBegin(trialsLoopScheduler) {
   // set up handler to look after randomisation of conditions etc
   trials = new TrialHandler({
     psychoJS: psychoJS,
-    nReps: 1, method: TrialHandler.Method.RANDOM,
+    nReps: 10, method: TrialHandler.Method.RANDOM,
     extraInfo: expInfo, originPath: undefined,
     trialList: 'conditions.csv',
     seed: 15, name: 'trials'
@@ -735,8 +735,6 @@ function trial_train_simonRoutineBegin(snapshot) {
     continueRoutine = true; // until we're told otherwise
     // update component parameters for each repeat
     train_trial_counter.setText(train_trial_num);
-    target_simon.setFillColor(new util.Color(target_color));
-    target_simon.setLineColor(new util.Color(target_color));
     trial_resp_simon.keys = undefined;
     trial_resp_simon.rt = undefined;
     _trial_resp_simon_allKeys = [];
@@ -808,6 +806,11 @@ function trial_train_simonRoutineEachFrame(snapshot) {
       target_simon.setAutoDraw(true);
     }
 
+    
+    if (target_simon.status === PsychoJS.Status.STARTED){ // only update if being drawn
+      target_simon.setFillColor(new util.Color(target_color), false);
+      target_simon.setLineColor(new util.Color(target_color), false);
+    }
     
     // *trial_resp_simon* updates
     if (t >= 0 && trial_resp_simon.status === PsychoJS.Status.NOT_STARTED) {
@@ -1556,8 +1559,6 @@ function trialRoutineBegin(snapshot) {
     continueRoutine = true; // until we're told otherwise
     // update component parameters for each repeat
     trial_counter.setText(trial_num);
-    target.setFillColor(new util.Color(target_color));
-    target.setLineColor(new util.Color(target_color));
     trial_resp.keys = undefined;
     trial_resp.rt = undefined;
     _trial_resp_allKeys = [];
@@ -1691,6 +1692,11 @@ function trialRoutineEachFrame(snapshot) {
     frameRemains = 2.6  - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if ((target.status === PsychoJS.Status.STARTED || target.status === PsychoJS.Status.FINISHED) && t >= frameRemains) {
       target.setAutoDraw(false);
+    }
+    
+    if (target.status === PsychoJS.Status.STARTED){ // only update if being drawn
+      target.setFillColor(new util.Color(target_color), false);
+      target.setLineColor(new util.Color(target_color), false);
     }
     
     // *trial_resp* updates
