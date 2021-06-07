@@ -107,7 +107,7 @@ var instructions_simonClock;
 var instruct_text_simon;
 var instruct_resp_simon;
 var trial_train_simonClock;
-var train_trial_counter;
+var train_trial_finger;
 var fixation_simon;
 var target_simon;
 var trial_resp_simon;
@@ -130,7 +130,7 @@ var instructionsClock;
 var instruct_text;
 var instruct_resp;
 var trialClock;
-var trial_counter;
+var trial_finger;
 var fixation;
 var dot1;
 var dot2;
@@ -160,7 +160,7 @@ function experimentInit() {
   instruct_text_simon = new visual.TextStim({
     win: psychoJS.window,
     name: 'instruct_text_simon',
-    text: 'You are about to begin a block of practice trials in a simple color response game.\n\nIn each trial, you will stare at a white cross in the center of the screen.\n\nAt a random time during the trial, a colored circle will appear on the right or left side of the screen. You will next press a key to report the color of the circle. The trial number will be displayed in the upper right corner at the start of each trial.\n\nOn ODD numbered trials (1, 3, 5, and so on) you will see a GREEN or ORANGE circle and you will press the W or O key with your INDEX finger. \n\n* If the circle is GREEN, press the W key with your LEFT POINTER finger. \n* If the circle is ORANGE, press the O key with your RIGHT POINTER finger.\n\nOn EVEN numbered trials (2, 4, 6, and so on) you will see a BLUE or RED circle and you will press the Q or P key with your MIDDLE finger. \n\n* If the circle is BLUE, press the Q key with your LEFT MIDDLE finger. \n* If the circle is RED, press the P key with your RIGHT MIDDLE finger.\n\nAfter each trial, you will receive feedback about how you did. Please try to respond as quickly and accurately as you can.\n\nWhen you are ready to begin the block of practice trials, please press the SPACE BAR. ',
+    text: 'You are about to begin a block of practice trials in a simple color response game.\n\nIn each trial, you will stare at a white cross in the center of the screen.\n\nAt a random time during the trial, a colored circle will appear on the right or left side of the screen. You will next press a key to report the color of the circle. \n\nOn odd numbered trials (1, 3, 5, and so on) you will see a GREEN or ORANGE circle and you will press the W or O key with your INDEX finger. \n\n* If the circle is GREEN, press the W key with your LEFT POINTER finger. \n* If the circle is ORANGE, press the O key with your RIGHT POINTER finger.\n\nOn even numbered trials (2, 4, 6, and so on) you will see a BLUE or RED circle and you will press the Q or P key with your MIDDLE finger. \n\n* If the circle is BLUE, press the Q key with your LEFT MIDDLE finger. \n* If the circle is RED, press the P key with your RIGHT MIDDLE finger.\n\nAfter each trial, you will receive feedback about how you did. Please try to respond as quickly and accurately as you can.\n\nWhen you are ready to begin the block of practice trials, please press the SPACE BAR. ',
     font: 'Arial',
     units: undefined, 
     pos: [0, 0], height: 0.02,  wrapWidth: undefined, ori: 0,
@@ -172,14 +172,14 @@ function experimentInit() {
   
   // Initialize components for Routine "trial_train_simon"
   trial_train_simonClock = new util.Clock();
-  train_trial_counter = new visual.TextStim({
+  train_trial_finger = new visual.TextStim({
     win: psychoJS.window,
-    name: 'train_trial_counter',
+    name: 'train_trial_finger',
     text: '',
-    font: 'Open Sans',
+    font: 'Arial',
     units: undefined, 
-    pos: [0.4, 0.4], height: 0.02,  wrapWidth: undefined, ori: 0.0,
-    color: new util.Color('white'),  opacity: undefined,
+    pos: [0, 0.05], height: 0.02,  wrapWidth: undefined, ori: 0.0,
+    color: new util.Color('black'),  opacity: undefined,
     depth: 0.0 
   });
   
@@ -311,14 +311,14 @@ function experimentInit() {
   
   // Initialize components for Routine "trial"
   trialClock = new util.Clock();
-  trial_counter = new visual.TextStim({
+  trial_finger = new visual.TextStim({
     win: psychoJS.window,
-    name: 'trial_counter',
+    name: 'trial_finger',
     text: '',
-    font: 'Open Sans',
+    font: 'Arial',
     units: undefined, 
-    pos: [0.4, 0.4], height: 0.02,  wrapWidth: undefined, ori: 0.0,
-    color: new util.Color('white'),  opacity: undefined,
+    pos: [0, 0.1], height: 0.02,  wrapWidth: undefined, ori: 0.0,
+    color: new util.Color('black'),  opacity: undefined,
     depth: 0.0 
   });
   
@@ -725,6 +725,7 @@ var _trial_resp_simon_allKeys;
 var target_onset;
 var target_resp;
 var target_color;
+var finger_text;
 var trial_train_simonComponents;
 function trial_train_simonRoutineBegin(snapshot) {
   return function () {
@@ -743,13 +744,15 @@ function trial_train_simonRoutineBegin(snapshot) {
     if (train_trial_num % 2 === 0) {
         target_resp = even_target_resp;
         target_color = even_target_color;
+        finger_text = 'MIDDLE';
     } else {
         target_resp = odd_target_resp;
         target_color = odd_target_color; 
+        finger_text = 'POINTER';
     }
     // keep track of which components have finished
     trial_train_simonComponents = [];
-    trial_train_simonComponents.push(train_trial_counter);
+    trial_train_simonComponents.push(train_trial_finger);
     trial_train_simonComponents.push(fixation_simon);
     trial_train_simonComponents.push(target_simon);
     trial_train_simonComponents.push(trial_resp_simon);
@@ -771,22 +774,22 @@ function trial_train_simonRoutineEachFrame(snapshot) {
     frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
     // update/draw components on each frame
     
-    // *train_trial_counter* updates
-    if (t >= 0.0 && train_trial_counter.status === PsychoJS.Status.NOT_STARTED) {
+    // *train_trial_finger* updates
+    if (t >= 0.0 && train_trial_finger.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
-      train_trial_counter.tStart = t;  // (not accounting for frame time here)
-      train_trial_counter.frameNStart = frameN;  // exact frame index
+      train_trial_finger.tStart = t;  // (not accounting for frame time here)
+      train_trial_finger.frameNStart = frameN;  // exact frame index
       
-      train_trial_counter.setAutoDraw(true);
+      train_trial_finger.setAutoDraw(true);
     }
 
     frameRemains = 0.0 + 1.0 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (train_trial_counter.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      train_trial_counter.setAutoDraw(false);
+    if (train_trial_finger.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+      train_trial_finger.setAutoDraw(false);
     }
     
-    if (train_trial_counter.status === PsychoJS.Status.STARTED){ // only update if being drawn
-      train_trial_counter.setText(train_trial_num, false);
+    if (train_trial_finger.status === PsychoJS.Status.STARTED){ // only update if being drawn
+      train_trial_finger.setText(finger_text, false);
     }
     
     // *fixation_simon* updates
@@ -1568,16 +1571,18 @@ function trialRoutineBegin(snapshot) {
     target.setPos(eval(target_pos));
     target_onset = Math.random() + 1.5;
     
-    if (trial_num % 2 === 0) {
+    if (train_trial_num % 2 === 0) {
         target_resp = even_target_resp;
         target_color = even_target_color;
+        finger_text = 'MIDDLE';
     } else {
         target_resp = odd_target_resp;
         target_color = odd_target_color; 
+        finger_text = 'POINTER';
     }
     // keep track of which components have finished
     trialComponents = [];
-    trialComponents.push(trial_counter);
+    trialComponents.push(trial_finger);
     trialComponents.push(fixation);
     trialComponents.push(dot1);
     trialComponents.push(dot2);
@@ -1602,22 +1607,22 @@ function trialRoutineEachFrame(snapshot) {
     frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
     // update/draw components on each frame
     
-    // *trial_counter* updates
-    if (t >= 0.0 && trial_counter.status === PsychoJS.Status.NOT_STARTED) {
+    // *trial_finger* updates
+    if (t >= 0.0 && trial_finger.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
-      trial_counter.tStart = t;  // (not accounting for frame time here)
-      trial_counter.frameNStart = frameN;  // exact frame index
+      trial_finger.tStart = t;  // (not accounting for frame time here)
+      trial_finger.frameNStart = frameN;  // exact frame index
       
-      trial_counter.setAutoDraw(true);
+      trial_finger.setAutoDraw(true);
     }
 
     frameRemains = 0.0 + 1.0 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (trial_counter.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      trial_counter.setAutoDraw(false);
+    if (trial_finger.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+      trial_finger.setAutoDraw(false);
     }
     
-    if (trial_counter.status === PsychoJS.Status.STARTED){ // only update if being drawn
-      trial_counter.setText(trial_num, false);
+    if (trial_finger.status === PsychoJS.Status.STARTED){ // only update if being drawn
+      trial_finger.setText(trial_finger_text, false);
     }
     
     // *fixation* updates

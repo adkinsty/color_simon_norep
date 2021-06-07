@@ -79,20 +79,20 @@
       </KeyboardComponent>
     </Routine>
     <Routine name="trial">
-      <TextComponent name="trial_counter">
-        <Param name="color" updates="constant" val="white" valType="color"/>
+      <TextComponent name="trial_finger">
+        <Param name="color" updates="constant" val="black" valType="color"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="contrast" updates="constant" val="1" valType="num"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="num"/>
         <Param name="flip" updates="constant" val="None" valType="str"/>
-        <Param name="font" updates="constant" val="Open Sans" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
         <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
         <Param name="letterHeight" updates="constant" val="0.02" valType="num"/>
-        <Param name="name" updates="None" val="trial_counter" valType="code"/>
+        <Param name="name" updates="None" val="trial_finger" valType="code"/>
         <Param name="opacity" updates="constant" val="" valType="num"/>
         <Param name="ori" updates="constant" val="0" valType="num"/>
-        <Param name="pos" updates="constant" val="(.4,.4)" valType="list"/>
+        <Param name="pos" updates="constant" val="(0,.1)" valType="list"/>
         <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
         <Param name="startEstim" updates="None" val="" valType="num"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
@@ -100,7 +100,7 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="1" valType="num"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="set every frame" val="$trial_num" valType="str"/>
+        <Param name="text" updates="set every frame" val="$trial_finger_text" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="num"/>
       </TextComponent>
@@ -289,7 +289,7 @@
         <Param name="Before JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="accs = [];&amp;#10;rews = [];&amp;#10;too_slows = [];&amp;#10;too_soons = [];&amp;#10;trial_num = 1;" valType="extendedCode"/>
-        <Param name="Begin JS Routine" updates="constant" val="target.setPos(eval(target_pos));&amp;#10;target_onset = Math.random() + 1.5;&amp;#10;&amp;#10;if (trial_num % 2 === 0) {&amp;#10;    target_resp = even_target_resp;&amp;#10;    target_color = even_target_color;&amp;#10;} else {&amp;#10;    target_resp = odd_target_resp;&amp;#10;    target_color = odd_target_color; &amp;#10;}" valType="extendedCode"/>
+        <Param name="Begin JS Routine" updates="constant" val="target.setPos(eval(target_pos));&amp;#10;target_onset = Math.random() + 1.5;&amp;#10;&amp;#10;if (train_trial_num % 2 === 0) {&amp;#10;    target_resp = even_target_resp;&amp;#10;    target_color = even_target_color;&amp;#10;    finger_text = 'MIDDLE';&amp;#10;} else {&amp;#10;    target_resp = odd_target_resp;&amp;#10;    target_color = odd_target_color; &amp;#10;    finger_text = 'POINTER';&amp;#10;}" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="JS" valType="str"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
@@ -466,7 +466,7 @@
         <Param name="stopType" updates="None" val="time (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="constant" val="You are about to begin a block of practice trials in a simple color response game.&amp;#10;&amp;#10;In each trial, you will stare at a white cross in the center of the screen.&amp;#10;&amp;#10;At a random time during the trial, a colored circle will appear on the right or left side of the screen. You will next press a key to report the color of the circle. The trial number will be displayed in the upper right corner at the start of each trial.&amp;#10;&amp;#10;On ODD numbered trials (1, 3, 5, and so on) you will see a GREEN or ORANGE circle and you will press the W or O key with your INDEX finger. &amp;#10;&amp;#10;* If the circle is GREEN, press the W key with your LEFT POINTER finger. &amp;#10;* If the circle is ORANGE, press the O key with your RIGHT POINTER finger.&amp;#10;&amp;#10;On EVEN numbered trials (2, 4, 6, and so on) you will see a BLUE or RED circle and you will press the Q or P key with your MIDDLE finger. &amp;#10;&amp;#10;* If the circle is BLUE, press the Q key with your LEFT MIDDLE finger. &amp;#10;* If the circle is RED, press the P key with your RIGHT MIDDLE finger.&amp;#10;&amp;#10;After each trial, you will receive feedback about how you did. Please try to respond as quickly and accurately as you can.&amp;#10;&amp;#10;When you are ready to begin the block of practice trials, please press the SPACE BAR. " valType="str"/>
+        <Param name="text" updates="constant" val="You are about to begin a block of practice trials in a simple color response game.&amp;#10;&amp;#10;In each trial, you will stare at a white cross in the center of the screen.&amp;#10;&amp;#10;At a random time during the trial, a colored circle will appear on the right or left side of the screen. You will next press a key to report the color of the circle. &amp;#10;&amp;#10;On odd numbered trials (1, 3, 5, and so on) you will see a GREEN or ORANGE circle and you will press the W or O key with your INDEX finger. &amp;#10;&amp;#10;* If the circle is GREEN, press the W key with your LEFT POINTER finger. &amp;#10;* If the circle is ORANGE, press the O key with your RIGHT POINTER finger.&amp;#10;&amp;#10;On even numbered trials (2, 4, 6, and so on) you will see a BLUE or RED circle and you will press the Q or P key with your MIDDLE finger. &amp;#10;&amp;#10;* If the circle is BLUE, press the Q key with your LEFT MIDDLE finger. &amp;#10;* If the circle is RED, press the P key with your RIGHT MIDDLE finger.&amp;#10;&amp;#10;After each trial, you will receive feedback about how you did. Please try to respond as quickly and accurately as you can.&amp;#10;&amp;#10;When you are ready to begin the block of practice trials, please press the SPACE BAR. " valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -535,20 +535,20 @@
       </KeyboardComponent>
     </Routine>
     <Routine name="trial_train_simon">
-      <TextComponent name="train_trial_counter">
-        <Param name="color" updates="constant" val="white" valType="color"/>
+      <TextComponent name="train_trial_finger">
+        <Param name="color" updates="constant" val="black" valType="color"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="contrast" updates="constant" val="1" valType="num"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="num"/>
         <Param name="flip" updates="constant" val="None" valType="str"/>
-        <Param name="font" updates="constant" val="Open Sans" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
         <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
         <Param name="letterHeight" updates="constant" val="0.02" valType="num"/>
-        <Param name="name" updates="None" val="train_trial_counter" valType="code"/>
+        <Param name="name" updates="None" val="train_trial_finger" valType="code"/>
         <Param name="opacity" updates="constant" val="" valType="num"/>
         <Param name="ori" updates="constant" val="0" valType="num"/>
-        <Param name="pos" updates="constant" val="(.4,.4)" valType="list"/>
+        <Param name="pos" updates="constant" val="(0,.05)" valType="list"/>
         <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
         <Param name="startEstim" updates="None" val="" valType="num"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
@@ -556,7 +556,7 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="1" valType="num"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="set every frame" val="$train_trial_num" valType="str"/>
+        <Param name="text" updates="set every frame" val="$finger_text" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="num"/>
       </TextComponent>
@@ -637,7 +637,7 @@
         <Param name="Before JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="train_trial_num = 1;" valType="extendedCode"/>
-        <Param name="Begin JS Routine" updates="constant" val="target_simon.setPos(eval(target_pos));&amp;#10;target_onset = Math.random() * (1 - 0) + 0;&amp;#10;&amp;#10;if (train_trial_num % 2 === 0) {&amp;#10;    target_resp = even_target_resp;&amp;#10;    target_color = even_target_color;&amp;#10;} else {&amp;#10;    target_resp = odd_target_resp;&amp;#10;    target_color = odd_target_color; &amp;#10;}" valType="extendedCode"/>
+        <Param name="Begin JS Routine" updates="constant" val="target_simon.setPos(eval(target_pos));&amp;#10;target_onset = Math.random() * (1 - 0) + 0;&amp;#10;&amp;#10;if (train_trial_num % 2 === 0) {&amp;#10;    target_resp = even_target_resp;&amp;#10;    target_color = even_target_color;&amp;#10;    finger_text = 'MIDDLE';&amp;#10;} else {&amp;#10;    target_resp = odd_target_resp;&amp;#10;    target_color = odd_target_color; &amp;#10;    finger_text = 'POINTER';&amp;#10;}" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="JS" valType="str"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
