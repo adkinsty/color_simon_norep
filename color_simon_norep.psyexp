@@ -92,7 +92,7 @@
         <Param name="name" updates="None" val="trial_counter" valType="code"/>
         <Param name="opacity" updates="constant" val="" valType="num"/>
         <Param name="ori" updates="constant" val="0" valType="num"/>
-        <Param name="pos" updates="constant" val="(.5,.5)" valType="list"/>
+        <Param name="pos" updates="constant" val="(.4,.4)" valType="list"/>
         <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
         <Param name="startEstim" updates="None" val="" valType="num"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
@@ -100,7 +100,7 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="1" valType="num"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="set every repeat" val="$trial_num" valType="str"/>
+        <Param name="text" updates="set every frame" val="$trial_num" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="num"/>
       </TextComponent>
@@ -287,17 +287,17 @@
       <CodeComponent name="trial_code">
         <Param name="Before Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Before JS Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin Experiment" updates="constant" val="accs = []&amp;#10;rews = []&amp;#10;too_slows = []&amp;#10;trial_num = 0" valType="extendedCode"/>
-        <Param name="Begin JS Experiment" updates="constant" val="accs = [];&amp;#10;rews = [];&amp;#10;too_slows = [];&amp;#10;too_soons = [];&amp;#10;trial_num = 0;" valType="extendedCode"/>
-        <Param name="Begin JS Routine" updates="constant" val="target.setPos(eval(target_pos));&amp;#10;target_onset = Math.random() + 1.5;&amp;#10;trial_num = trial_num + 1;&amp;#10;&amp;#10;if (trial_num % 2 === 0) {&amp;#10;    target_resp = even_target_resp;&amp;#10;    target_color = even_target_color;&amp;#10;} else {&amp;#10;    target_resp = odd_target_resp;&amp;#10;    target_color = odd_target_color; &amp;#10;}" valType="extendedCode"/>
-        <Param name="Begin Routine" updates="constant" val="target.setPos(eval(target_pos))&amp;#10;target_onset = 0.5&amp;#10;trial_num += 1" valType="extendedCode"/>
-        <Param name="Code Type" updates="None" val="Both" valType="str"/>
+        <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin JS Experiment" updates="constant" val="accs = [];&amp;#10;rews = [];&amp;#10;too_slows = [];&amp;#10;too_soons = [];&amp;#10;trial_num = 1;" valType="extendedCode"/>
+        <Param name="Begin JS Routine" updates="constant" val="target.setPos(eval(target_pos));&amp;#10;target_onset = Math.random() + 1.5;&amp;#10;&amp;#10;if (trial_num % 2 === 0) {&amp;#10;    target_resp = even_target_resp;&amp;#10;    target_color = even_target_color;&amp;#10;} else {&amp;#10;    target_resp = odd_target_resp;&amp;#10;    target_color = odd_target_color; &amp;#10;}" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Code Type" updates="None" val="JS" valType="str"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End JS Routine" updates="constant" val="psychoJS.experiment.addData('target_onset', target_onset)&amp;#10;&amp;#10;rt = trial_resp.rt;&amp;#10;if (((rt &gt;= 1.4) &amp;&amp; (rt &lt;= 1.6))) {&amp;#10;    too_slow = false;&amp;#10;    too_soon = false;&amp;#10;    if ((trial_resp.corr === 1)) {&amp;#10;        acc = 1;&amp;#10;    } else {&amp;#10;        acc = 0;&amp;#10;    }&amp;#10;} else {&amp;#10;    if ((rt &gt; 1.6)) {&amp;#10;        too_slow = true;&amp;#10;        too_soon = false;&amp;#10;        acc = 0;&amp;#10;    } else {&amp;#10;        too_slow = false;&amp;#10;        too_soon = true;&amp;#10;        acc = 0;&amp;#10;    }&amp;#10;}&amp;#10;accs += acc;&amp;#10;rew = 1;&amp;#10;rews += rew;&amp;#10;too_slows += too_slow;&amp;#10;too_soons += too_soon;&amp;#10;if (too_slow) {&amp;#10;    feedback_test_msg = &quot;Too Slow&quot;;&amp;#10;    feedback_duration = 1;&amp;#10;} else {&amp;#10;    if (too_soon) {&amp;#10;        feedback_test_msg = &quot;Too Fast&quot;;&amp;#10;        feedback_duration = 1;&amp;#10;    } else {&amp;#10;        feedback_test_msg = &quot;Good timing&quot;;&amp;#10;        feedback_duration = 0;&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="thisExp.addData('target_onset', target_onset)&amp;#10;rt = trial_resp.rt&amp;#10;if rt &gt;= 1.4 and rt &lt;= 1.6:&amp;#10;    too_slow = False&amp;#10;    if trial_resp.corr == 1:&amp;#10;        acc = 1&amp;#10;    else:&amp;#10;        acc = 0&amp;#10;elif rt &gt; 1.6:&amp;#10;    too_slow = True&amp;#10;    acc = 0&amp;#10;else:&amp;#10;    too_slow = False&amp;#10;    acc = 0&amp;#10;accs += acc&amp;#10;rew = 1&amp;#10;rews += rew&amp;#10;too_slows += too_slow&amp;#10;&amp;#10;if too_slow:&amp;#10;    feedback_test_msg = &quot;Too Slow&quot;&amp;#10;    feedback_duration = 1&amp;#10;else:&amp;#10;    feedback_test_msg = &quot;Good timing&quot;&amp;#10;    feedback_duration = 0" valType="extendedCode"/>
+        <Param name="End JS Routine" updates="constant" val="psychoJS.experiment.addData('target_onset', target_onset)&amp;#10;&amp;#10;rt = trial_resp.rt;&amp;#10;if (((rt &gt;= 1.4) &amp;&amp; (rt &lt;= 1.6))) {&amp;#10;    too_slow = false;&amp;#10;    too_soon = false;&amp;#10;    if ((trial_resp.corr === 1)) {&amp;#10;        acc = 1;&amp;#10;    } else {&amp;#10;        acc = 0;&amp;#10;    }&amp;#10;} else {&amp;#10;    if ((rt &gt; 1.6)) {&amp;#10;        too_slow = true;&amp;#10;        too_soon = false;&amp;#10;        acc = 0;&amp;#10;    } else {&amp;#10;        too_slow = false;&amp;#10;        too_soon = true;&amp;#10;        acc = 0;&amp;#10;    }&amp;#10;}&amp;#10;accs += acc;&amp;#10;rew = 1;&amp;#10;rews += rew;&amp;#10;too_slows += too_slow;&amp;#10;too_soons += too_soon;&amp;#10;if (too_slow) {&amp;#10;    feedback_test_msg = &quot;Too Slow&quot;;&amp;#10;    feedback_duration = 1;&amp;#10;} else {&amp;#10;    if (too_soon) {&amp;#10;        feedback_test_msg = &quot;Too Fast&quot;;&amp;#10;        feedback_duration = 1;&amp;#10;    } else {&amp;#10;        feedback_test_msg = &quot;Good timing&quot;;&amp;#10;        feedback_duration = 0;&amp;#10;    }&amp;#10;}&amp;#10;&amp;#10;trial_num = trial_num + 1;&amp;#10;" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="name" updates="None" val="trial_code" valType="code"/>
       </CodeComponent>
@@ -428,17 +428,17 @@
       <CodeComponent name="block_note_code">
         <Param name="Before Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Before JS Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin Experiment" updates="constant" val="block_num = 1&amp;#10;block_one = True" valType="extendedCode"/>
+        <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="block_num = 1;&amp;#10;block_one = true;&amp;#10;" valType="extendedCode"/>
-        <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin JS Routine" updates="constant" val="trial_num = 1;" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
+        <Param name="Code Type" updates="None" val="Both" valType="str"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Routine" updates="constant" val="block_num += 1;&amp;#10;block_later = true;&amp;#10;block_one = false;&amp;#10;block_note_text_msg = ((&quot;Congrats. You completed block &quot; + block_num.toString()) + &quot; of 10. Feel free to relax for a moment. And remember: \n\n* If the circle is ORANGE, press the P key with your RIGHT pointer finger, and\n* If the circle is BLUE, press the W key with your LEFT pointer finger, and\n*Please respond exactly when the WHITE DOT appears.\n\nPress the SPACE BAR when you are ready to continue.&quot;);" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="block_num += 1&amp;#10;block_later = True&amp;#10;block_one = False&amp;#10;block_note_text_msg = 'Congrats. You completed block ' + str(block_num) + ' of 5. Feel free to relax for a moment. And remember: \n\n* If the circle is ORANGE, press the P key with your RIGHT pointer finger, and\n* If the circle is BLUE, press the W key with your LEFT pointer finger, and\n*Please respond exactly when the WHITE DOT appears.\n\nPress the SPACE BAR when you are ready to continue.'&amp;#10;" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="name" updates="None" val="block_note_code" valType="code"/>
       </CodeComponent>
@@ -548,7 +548,7 @@
         <Param name="name" updates="None" val="train_trial_counter" valType="code"/>
         <Param name="opacity" updates="constant" val="" valType="num"/>
         <Param name="ori" updates="constant" val="0" valType="num"/>
-        <Param name="pos" updates="constant" val="(.5,.5)" valType="list"/>
+        <Param name="pos" updates="constant" val="(.4,.4)" valType="list"/>
         <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
         <Param name="startEstim" updates="None" val="" valType="num"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
@@ -556,7 +556,7 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="1" valType="num"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="set every repeat" val="$train_trial_num" valType="str"/>
+        <Param name="text" updates="set every frame" val="$train_trial_num" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="num"/>
       </TextComponent>
@@ -636,16 +636,16 @@
         <Param name="Before Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Before JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin JS Experiment" updates="constant" val="train_trial_num = 0;" valType="extendedCode"/>
-        <Param name="Begin JS Routine" updates="constant" val="target_simon.setPos(eval(target_pos));&amp;#10;target_onset = Math.random() * (1 - 0) + 0;&amp;#10;train_trial_num = train_trial_num + 1;&amp;#10;&amp;#10;if (trial_num % 2 === 0) {&amp;#10;    target_resp = even_target_resp;&amp;#10;    target_color = even_target_color;&amp;#10;} else {&amp;#10;    target_resp = odd_target_resp;&amp;#10;    target_color = odd_target_color; &amp;#10;}" valType="extendedCode"/>
-        <Param name="Begin Routine" updates="constant" val="target.setPos(eval(target_pos))&amp;#10;target_onset = 0.5" valType="extendedCode"/>
-        <Param name="Code Type" updates="None" val="Both" valType="str"/>
+        <Param name="Begin JS Experiment" updates="constant" val="train_trial_num = 1;" valType="extendedCode"/>
+        <Param name="Begin JS Routine" updates="constant" val="target_simon.setPos(eval(target_pos));&amp;#10;target_onset = Math.random() * (1 - 0) + 0;&amp;#10;&amp;#10;if (train_trial_num % 2 === 0) {&amp;#10;    target_resp = even_target_resp;&amp;#10;    target_color = even_target_color;&amp;#10;} else {&amp;#10;    target_resp = odd_target_resp;&amp;#10;    target_color = odd_target_color; &amp;#10;}" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Code Type" updates="None" val="JS" valType="str"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End JS Routine" updates="constant" val="if ((trial_resp_simon.corr === 1)) {&amp;#10;    feedback_msg = &quot;Correct!&quot;;&amp;#10;    feedback_color = &quot;green&quot;;&amp;#10;} else {&amp;#10;    feedback_msg = &quot;Incorrect.&quot;;&amp;#10;    feedback_color = &quot;red&quot;;&amp;#10;}&amp;#10;" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="if trial_resp_simon.corr == 1:&amp;#10;    feedback_msg = &quot;Correct!&quot;&amp;#10;    feedback_color = &quot;green&quot;&amp;#10;else:&amp;#10;    feedback_msg = &quot;Incorrect.&quot;&amp;#10;    feedback_color = &quot;red&quot;" valType="extendedCode"/>
+        <Param name="End JS Routine" updates="constant" val="if ((trial_resp_simon.corr === 1)) {&amp;#10;    feedback_msg = &quot;Correct!&quot;;&amp;#10;    feedback_color = &quot;green&quot;;&amp;#10;} else {&amp;#10;    feedback_msg = &quot;Incorrect.&quot;;&amp;#10;    feedback_color = &quot;red&quot;;&amp;#10;}&amp;#10;&amp;#10;train_trial_num = train_trial_num + 1;&amp;#10;" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="name" updates="None" val="trial_code_simon" valType="code"/>
       </CodeComponent>
@@ -811,13 +811,13 @@
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
+        <Param name="Code Type" updates="None" val="JS" valType="str"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Routine" updates="constant" val="rt = trial_resp_timing.rt;&amp;#10;if ((rt &lt; 2.4)) {&amp;#10;    feedback_msg = &quot;Too fast.&quot;;&amp;#10;    feedback_color = &quot;red&quot;;&amp;#10;} else {&amp;#10;    if ((rt &gt; 2.6)) {&amp;#10;        feedback_msg = &quot;Too slow.&quot;;&amp;#10;        feedback_color = &quot;red&quot;;&amp;#10;    } else {&amp;#10;        if (((rt &gt;= 2.4) &amp;&amp; (rt &lt;= 2.6))) {&amp;#10;            feedback_msg = &quot;Perfect timing!&quot;;&amp;#10;            feedback_color = &quot;green&quot;;&amp;#10;        } else {&amp;#10;            feedback_msg = &quot;No response.&quot;;&amp;#10;            feedback_color = &quot;red&quot;;&amp;#10;        }&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="rt = trial_resp_timing.rt&amp;#10;&amp;#10;if rt &lt; 2.4:&amp;#10;    feedback_msg = &quot;Too fast.&quot;&amp;#10;    feedback_color = &quot;red&quot;&amp;#10;elif rt &gt; 2.6:&amp;#10;    feedback_msg = &quot;Too slow.&quot;&amp;#10;    feedback_color = &quot;red&quot;&amp;#10;elif rt &gt;= 2.4 and rt &lt;= 2.6:&amp;#10;    feedback_msg = &quot;Perfect timing!&quot;&amp;#10;    feedback_color = &quot;green&quot;&amp;#10;else:&amp;#10;    feedback_msg = &quot;No response.&quot;&amp;#10;    feedback_color = &quot;red&quot;&amp;#10;" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="name" updates="None" val="trial_code_timing" valType="code"/>
       </CodeComponent>
@@ -922,9 +922,9 @@
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="random" valType="str"/>
-      <Param name="nReps" updates="None" val="10" valType="code"/>
+      <Param name="nReps" updates="None" val="2" valType="code"/>
       <Param name="name" updates="None" val="trials_train_simon" valType="code"/>
-      <Param name="random seed" updates="None" val="" valType="code"/>
+      <Param name="random seed" updates="None" val="10" valType="code"/>
     </LoopInitiator>
     <Routine name="trial_train_simon"/>
     <Routine name="feedback"/>
@@ -937,7 +937,7 @@
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="sequential" valType="str"/>
-      <Param name="nReps" updates="None" val="1" valType="code"/>
+      <Param name="nReps" updates="None" val="5" valType="code"/>
       <Param name="name" updates="None" val="trials_train_timing" valType="code"/>
       <Param name="random seed" updates="None" val="60" valType="code"/>
     </LoopInitiator>
@@ -952,7 +952,7 @@
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="False" valType="bool"/>
       <Param name="loopType" updates="None" val="sequential" valType="str"/>
-      <Param name="nReps" updates="None" val="1" valType="code"/>
+      <Param name="nReps" updates="None" val="2" valType="code"/>
       <Param name="name" updates="None" val="blocks" valType="code"/>
       <Param name="random seed" updates="None" val="10" valType="code"/>
     </LoopInitiator>
@@ -963,7 +963,7 @@
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="random" valType="str"/>
-      <Param name="nReps" updates="None" val="10" valType="code"/>
+      <Param name="nReps" updates="None" val="2" valType="code"/>
       <Param name="name" updates="None" val="trials" valType="code"/>
       <Param name="random seed" updates="None" val="15" valType="code"/>
     </LoopInitiator>

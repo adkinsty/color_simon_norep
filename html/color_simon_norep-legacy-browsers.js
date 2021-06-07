@@ -167,7 +167,7 @@ function experimentInit() {
     text: '',
     font: 'Open Sans',
     units: undefined, 
-    pos: [0.5, 0.5], height: 0.02,  wrapWidth: undefined, ori: 0.0,
+    pos: [0.4, 0.4], height: 0.02,  wrapWidth: undefined, ori: 0.0,
     color: new util.Color('white'),  opacity: undefined,
     depth: 0.0 
   });
@@ -192,7 +192,7 @@ function experimentInit() {
   
   trial_resp_simon = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
   
-  train_trial_num = 0;
+  train_trial_num = 1;
   // Initialize components for Routine "feedback"
   feedbackClock = new util.Clock();
   feedback_text = new visual.TextStim({
@@ -306,7 +306,7 @@ function experimentInit() {
     text: '',
     font: 'Open Sans',
     units: undefined, 
-    pos: [0.5, 0.5], height: 0.02,  wrapWidth: undefined, ori: 0.0,
+    pos: [0.4, 0.4], height: 0.02,  wrapWidth: undefined, ori: 0.0,
     color: new util.Color('white'),  opacity: undefined,
     depth: 0.0 
   });
@@ -371,7 +371,7 @@ function experimentInit() {
   rews = [];
   too_slows = [];
   too_soons = [];
-  trial_num = 0;
+  trial_num = 1;
   // Initialize components for Routine "feedback_test"
   feedback_testClock = new util.Clock();
   feedback_test_text = new visual.TextStim({
@@ -567,10 +567,10 @@ function trials_train_simonLoopBegin(trials_train_simonLoopScheduler) {
   // set up handler to look after randomisation of conditions etc
   trials_train_simon = new TrialHandler({
     psychoJS: psychoJS,
-    nReps: 10, method: TrialHandler.Method.RANDOM,
+    nReps: 2, method: TrialHandler.Method.RANDOM,
     extraInfo: expInfo, originPath: undefined,
     trialList: 'conditions.csv',
-    seed: undefined, name: 'trials_train_simon'
+    seed: 10, name: 'trials_train_simon'
   });
   psychoJS.experiment.addLoop(trials_train_simon); // add the loop to the experiment
   currentLoop = trials_train_simon;  // we're now the current loop
@@ -605,7 +605,7 @@ function trials_train_timingLoopBegin(trials_train_timingLoopScheduler) {
   // set up handler to look after randomisation of conditions etc
   trials_train_timing = new TrialHandler({
     psychoJS: psychoJS,
-    nReps: 1, method: TrialHandler.Method.SEQUENTIAL,
+    nReps: 5, method: TrialHandler.Method.SEQUENTIAL,
     extraInfo: expInfo, originPath: undefined,
     trialList: undefined,
     seed: 60, name: 'trials_train_timing'
@@ -643,7 +643,7 @@ function blocksLoopBegin(blocksLoopScheduler) {
   // set up handler to look after randomisation of conditions etc
   blocks = new TrialHandler({
     psychoJS: psychoJS,
-    nReps: 1, method: TrialHandler.Method.SEQUENTIAL,
+    nReps: 2, method: TrialHandler.Method.SEQUENTIAL,
     extraInfo: expInfo, originPath: undefined,
     trialList: undefined,
     seed: 10, name: 'blocks'
@@ -675,7 +675,7 @@ function trialsLoopBegin(trialsLoopScheduler) {
   // set up handler to look after randomisation of conditions etc
   trials = new TrialHandler({
     psychoJS: psychoJS,
-    nReps: 10, method: TrialHandler.Method.RANDOM,
+    nReps: 2, method: TrialHandler.Method.RANDOM,
     extraInfo: expInfo, originPath: undefined,
     trialList: 'conditions.csv',
     seed: 15, name: 'trials'
@@ -728,15 +728,13 @@ function trial_train_simonRoutineBegin(snapshot) {
     frameN = -1;
     continueRoutine = true; // until we're told otherwise
     // update component parameters for each repeat
-    train_trial_counter.setText(train_trial_num);
     trial_resp_simon.keys = undefined;
     trial_resp_simon.rt = undefined;
     _trial_resp_simon_allKeys = [];
     target_simon.setPos(eval(target_pos));
     target_onset = Math.random() * (1 - 0) + 0;
-    train_trial_num = train_trial_num + 1;
     
-    if (trial_num % 2 === 0) {
+    if (train_trial_num % 2 === 0) {
         target_resp = even_target_resp;
         target_color = even_target_color;
     } else {
@@ -780,6 +778,10 @@ function trial_train_simonRoutineEachFrame(snapshot) {
     frameRemains = 0.0 + 1.0 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (train_trial_counter.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       train_trial_counter.setAutoDraw(false);
+    }
+    
+    if (train_trial_counter.status === PsychoJS.Status.STARTED){ // only update if being drawn
+      train_trial_counter.setText(train_trial_num, false);
     }
     
     // *fixation_simon* updates
@@ -897,6 +899,8 @@ function trial_train_simonRoutineEnd(snapshot) {
         feedback_msg = "Incorrect.";
         feedback_color = "red";
     }
+    
+    train_trial_num = train_trial_num + 1;
     
     // the Routine "trial_train_simon" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
@@ -1558,13 +1562,11 @@ function trialRoutineBegin(snapshot) {
     frameN = -1;
     continueRoutine = true; // until we're told otherwise
     // update component parameters for each repeat
-    trial_counter.setText(trial_num);
     trial_resp.keys = undefined;
     trial_resp.rt = undefined;
     _trial_resp_allKeys = [];
     target.setPos(eval(target_pos));
     target_onset = Math.random() + 1.5;
-    trial_num = trial_num + 1;
     
     if (trial_num % 2 === 0) {
         target_resp = even_target_resp;
@@ -1613,6 +1615,10 @@ function trialRoutineEachFrame(snapshot) {
     frameRemains = 0.0 + 1.0 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (trial_counter.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       trial_counter.setAutoDraw(false);
+    }
+    
+    if (trial_counter.status === PsychoJS.Status.STARTED){ // only update if being drawn
+      trial_counter.setText(trial_num, false);
     }
     
     // *fixation* updates
@@ -1827,6 +1833,8 @@ function trialRoutineEnd(snapshot) {
         }
     }
     
+    trial_num = trial_num + 1;
+    
     // the Routine "trial" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -1939,6 +1947,7 @@ function block_noteRoutineBegin(snapshot) {
     block_note_resp.keys = undefined;
     block_note_resp.rt = undefined;
     _block_note_resp_allKeys = [];
+    trial_num = 1;
     // keep track of which components have finished
     block_noteComponents = [];
     block_noteComponents.push(block_one_text);
