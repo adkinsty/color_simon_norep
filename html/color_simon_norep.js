@@ -1622,7 +1622,7 @@ function trialRoutineEachFrame(snapshot) {
     }
     
     if (trial_finger.status === PsychoJS.Status.STARTED){ // only update if being drawn
-      trial_finger.setText(trial_finger_text, false);
+      trial_finger.setText(finger_text, false);
     }
     
     // *fixation* updates
