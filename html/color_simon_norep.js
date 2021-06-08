@@ -299,7 +299,7 @@ function experimentInit() {
   instruct_text = new visual.TextStim({
     win: psychoJS.window,
     name: 'instruct_text',
-    text: 'You are about to begin a block of trials in a timed color response game. You will respond to colors like in the first block of practice trials, but you will need to time your responses perfectly, like in the second block of practice trials.\n\nAs in the first practice block, at a random time during the trial, a colored circle will appear on the right or left side of the screen. You will press a key to report the color of the circle. \n\nOn ODD numbered trials (1, 3, 5, and so on) you will see a GREEN or ORANGE circle and you will press the W or O key with your INDEX finger. \n\n* If the circle is GREEN, press the W key with your LEFT POINTER finger. \n* If the circle is ORANGE, press the O key with your RIGHT POINTER finger.\n\nOn EVEN numbered trials (2, 4, 6, and so on) you will see a BLUE or RED circle and you will press the Q or P key with your MIDDLE finger. \n\n* If the circle is BLUE, press the Q key with your LEFT MIDDLE finger. \n* If the circle is RED, press the P key with your RIGHT MIDDLE finger.\n\nAs in the second practice block, each trial you will see a black cross in the center of the screen. The cross will turn into a black dot that flashes three times. After the third flash, a WHITE DOT will appear at the center of the screen.\n\nPlease respond exactly when the WHITE DOT appears.\n\nWhen you are ready to begin the first block, please press the SPACE BAR. ',
+    text: 'You are about to begin a block of trials in a timed color response game. You will respond to colors like in the first block of practice trials, but you will need to time your responses perfectly, like in the second block of practice trials.\n\nAs in the first practice block, at a random time during the trial, a colored circle will appear on the right or left side of the screen. You will press a key to report the color of the circle. \n\nOn odd numbered trials (1, 3, 5, and so on) you will see a GREEN or ORANGE circle and you will press the W or O key with your INDEX finger. \n\n* If the circle is GREEN, press the W key with your LEFT POINTER finger. \n* If the circle is ORANGE, press the O key with your RIGHT POINTER finger.\n\nOn even numbered trials (2, 4, 6, and so on) you will see a BLUE or RED circle and you will press the Q or P key with your MIDDLE finger. \n\n* If the circle is BLUE, press the Q key with your LEFT MIDDLE finger. \n* If the circle is RED, press the P key with your RIGHT MIDDLE finger.\n\nAs in the second practice block, each trial you will see a black cross in the center of the screen. The cross will turn into a black dot that flashes three times. After the third flash, a WHITE DOT will appear at the center of the screen.\n\nPlease respond exactly when the WHITE DOT appears.\n\nWhen you are ready to begin the first block, please press the SPACE BAR. ',
     font: 'Arial',
     units: undefined, 
     pos: [0, 0], height: 0.02,  wrapWidth: undefined, ori: 0,
@@ -401,10 +401,10 @@ function experimentInit() {
   block_one_text = new visual.TextStim({
     win: psychoJS.window,
     name: 'block_one_text',
-    text: 'Congrats. You completed block 1 of 10. Feel free to relax for a moment. And remember: \n\n* If the circle is ORANGE, press the P key with your RIGHT pointer finger, and\n* If the circle is BLUE, press the W key with your LEFT pointer finger, and\n* Please respond exactly when the WHITE DOT appears.\n\nPress the SPACE BAR when you are ready to continue.\n',
+    text: 'Congrats. You completed block 1 of 10. Feel free to relax for a moment. And remember: \n\nOn odd numbered trials (1, 3, 5, and so on) you will see a GREEN or ORANGE circle and you will press the W or O key with your INDEX finger. \n\n* If the circle is GREEN, press the W key with your LEFT POINTER finger. \n* If the circle is ORANGE, press the O key with your RIGHT POINTER finger.\n\nOn even numbered trials (2, 4, 6, and so on) you will see a BLUE or RED circle and you will press the Q or P key with your MIDDLE finger. \n\n* If the circle is BLUE, press the Q key with your LEFT MIDDLE finger. \n* If the circle is RED, press the P key with your RIGHT MIDDLE finger.\n\nPress the SPACE BAR when you are ready to continue.\n',
     font: 'Arial',
     units: undefined, 
-    pos: [0, 0], height: 0.025,  wrapWidth: undefined, ori: 0,
+    pos: [0, 0], height: 0.02,  wrapWidth: undefined, ori: 0,
     color: new util.Color('black'),  opacity: 1,
     depth: 0.0 
   });
@@ -415,7 +415,7 @@ function experimentInit() {
     text: '',
     font: 'Arial',
     units: undefined, 
-    pos: [0, 0], height: 0.025,  wrapWidth: undefined, ori: 0,
+    pos: [0, 0], height: 0.02,  wrapWidth: undefined, ori: 0,
     color: new util.Color('black'),  opacity: 1,
     depth: -1.0 
   });
@@ -2063,7 +2063,14 @@ function block_noteRoutineEnd(snapshot) {
     block_num += 1;
     block_later = true;
     block_one = false;
-    block_note_text_msg = (("Congrats. You completed block " + block_num.toString()) + " of 10. Feel free to relax for a moment. And remember: \n\n* If the circle is ORANGE, press the P key with your RIGHT pointer finger, and\n* If the circle is BLUE, press the W key with your LEFT pointer finger, and\n*Please respond exactly when the WHITE DOT appears.\n\nPress the SPACE BAR when you are ready to continue.");
+    block_note_text_msg = (("Congrats. You completed block " + block_num.toString()) + " of 10. Feel free to relax for a moment. And remember: \n\n* If the circle is GREEN, press the W key with your LEFT POINTER finger\n* If the circle is ORANGE, press the O key with your RIGHT POINTER finger\n* If the circle is BLUE, press the Q key with your LEFT MIDDLE finger\n* If the circle is RED, press the P key with your RIGHT MIDDLE finger, and \n*Please respond exactly when the WHITE DOT appears.\n\nPress the SPACE BAR when you are ready to continue.");
+    
+    
+    
+     
+    
+    
+    
     // the Routine "block_note" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
