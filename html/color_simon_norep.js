@@ -577,7 +577,7 @@ function trials_train_simonLoopBegin(trials_train_simonLoopScheduler) {
   // set up handler to look after randomisation of conditions etc
   trials_train_simon = new TrialHandler({
     psychoJS: psychoJS,
-    nReps: 2, method: TrialHandler.Method.RANDOM,
+    nReps: 10, method: TrialHandler.Method.RANDOM,
     extraInfo: expInfo, originPath: undefined,
     trialList: 'conditions.csv',
     seed: 10, name: 'trials_train_simon'
@@ -1571,7 +1571,7 @@ function trialRoutineBegin(snapshot) {
     target.setPos(eval(target_pos));
     target_onset = Math.random() + 1.5;
     
-    if (train_trial_num % 2 === 0) {
+    if (trial_num % 2 === 0) {
         target_resp = even_target_resp;
         target_color = even_target_color;
         finger_text = 'MIDDLE';
