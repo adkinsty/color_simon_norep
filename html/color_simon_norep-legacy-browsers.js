@@ -54,9 +54,6 @@ const blocksLoopScheduler = new Scheduler(psychoJS);
 flowScheduler.add(blocksLoopBegin, blocksLoopScheduler);
 flowScheduler.add(blocksLoopScheduler);
 flowScheduler.add(blocksLoopEnd);
-flowScheduler.add(completion_surveyRoutineBegin());
-flowScheduler.add(completion_surveyRoutineEachFrame());
-flowScheduler.add(completion_surveyRoutineEnd());
 flowScheduler.add(quitPsychoJS, '', true);
 
 // quit if user presses Cancel in dialog box:
@@ -86,7 +83,7 @@ function updateInfo() {
 
   // add info from the URL:
   util.addInfoFromUrl(expInfo);
-  psychoJS.setRedirectUrls('https://app.prolific.co/submissions/complete?cc=4D95157C', '');
+  psychoJS.setRedirectUrls('https://app.prolific.co/submissions/complete?cc=ABCDEFG', '');
 
   return Scheduler.Event.NEXT;
 }
@@ -140,7 +137,6 @@ var block_later_text;
 var block_note_resp;
 var block_num;
 var block_one;
-var completion_surveyClock;
 var globalClock;
 var routineTimer;
 function experimentInit() {
@@ -414,8 +410,6 @@ function experimentInit() {
   block_num = 1;
   block_one = true;
   
-  // Initialize components for Routine "completion_survey"
-  completion_surveyClock = new util.Clock();
   // Create some handy timers
   globalClock = new util.Clock();  // to track the time since experiment started
   routineTimer = new util.CountdownTimer();  // to track time remaining of each (non-slip) routine
@@ -567,10 +561,10 @@ function trials_train_simonLoopBegin(trials_train_simonLoopScheduler) {
   // set up handler to look after randomisation of conditions etc
   trials_train_simon = new TrialHandler({
     psychoJS: psychoJS,
-    nReps: 10, method: TrialHandler.Method.RANDOM,
+    nReps: 2, method: TrialHandler.Method.RANDOM,
     extraInfo: expInfo, originPath: undefined,
     trialList: 'conditions.csv',
-    seed: 10, name: 'trials_train_simon'
+    seed: 15, name: 'trials_train_simon'
   });
   psychoJS.experiment.addLoop(trials_train_simon); // add the loop to the experiment
   currentLoop = trials_train_simon;  // we're now the current loop
@@ -605,7 +599,7 @@ function trials_train_timingLoopBegin(trials_train_timingLoopScheduler) {
   // set up handler to look after randomisation of conditions etc
   trials_train_timing = new TrialHandler({
     psychoJS: psychoJS,
-    nReps: 5, method: TrialHandler.Method.SEQUENTIAL,
+    nReps: 6, method: TrialHandler.Method.SEQUENTIAL,
     extraInfo: expInfo, originPath: undefined,
     trialList: undefined,
     seed: 60, name: 'trials_train_timing'
@@ -675,7 +669,7 @@ function trialsLoopBegin(trialsLoopScheduler) {
   // set up handler to look after randomisation of conditions etc
   trials = new TrialHandler({
     psychoJS: psychoJS,
-    nReps: 2, method: TrialHandler.Method.RANDOM,
+    nReps: 4, method: TrialHandler.Method.RANDOM,
     extraInfo: expInfo, originPath: undefined,
     trialList: 'conditions.csv',
     seed: 15, name: 'trials'
@@ -2075,77 +2069,6 @@ function block_noteRoutineEnd(snapshot) {
     
     
     // the Routine "block_note" was not non-slip safe, so reset the non-slip timer
-    routineTimer.reset();
-    
-    return Scheduler.Event.NEXT;
-  };
-}
-
-
-var completion_surveyComponents;
-function completion_surveyRoutineBegin(snapshot) {
-  return function () {
-    //------Prepare to start Routine 'completion_survey'-------
-    t = 0;
-    completion_surveyClock.reset(); // clock
-    frameN = -1;
-    continueRoutine = true; // until we're told otherwise
-    // update component parameters for each repeat
-    // keep track of which components have finished
-    completion_surveyComponents = [];
-    
-    completion_surveyComponents.forEach( function(thisComponent) {
-      if ('status' in thisComponent)
-        thisComponent.status = PsychoJS.Status.NOT_STARTED;
-       });
-    return Scheduler.Event.NEXT;
-  }
-}
-
-
-function completion_surveyRoutineEachFrame(snapshot) {
-  return function () {
-    //------Loop for each frame of Routine 'completion_survey'-------
-    // get current time
-    t = completion_surveyClock.getTime();
-    frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
-    // update/draw components on each frame
-    // check for quit (typically the Esc key)
-    if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
-      return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
-    }
-    
-    // check if the Routine should terminate
-    if (!continueRoutine) {  // a component has requested a forced-end of Routine
-      return Scheduler.Event.NEXT;
-    }
-    
-    continueRoutine = false;  // reverts to True if at least one component still running
-    completion_surveyComponents.forEach( function(thisComponent) {
-      if ('status' in thisComponent && thisComponent.status !== PsychoJS.Status.FINISHED) {
-        continueRoutine = true;
-      }
-    });
-    
-    // refresh the screen if continuing
-    if (continueRoutine) {
-      return Scheduler.Event.FLIP_REPEAT;
-    } else {
-      return Scheduler.Event.NEXT;
-    }
-  };
-}
-
-
-function completion_surveyRoutineEnd(snapshot) {
-  return function () {
-    //------Ending Routine 'completion_survey'-------
-    completion_surveyComponents.forEach( function(thisComponent) {
-      if (typeof thisComponent.setAutoDraw === 'function') {
-        thisComponent.setAutoDraw(false);
-      }
-    });
-    // the Routine "completion_survey" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
     return Scheduler.Event.NEXT;

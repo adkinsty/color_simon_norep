@@ -3,7 +3,7 @@
   <Settings>
     <Param name="Audio latency priority" updates="None" val="use prefs" valType="str"/>
     <Param name="Audio lib" updates="None" val="use prefs" valType="str"/>
-    <Param name="Completed URL" updates="None" val="https://app.prolific.co/submissions/complete?cc=4D95157C" valType="str"/>
+    <Param name="Completed URL" updates="None" val="https://app.prolific.co/submissions/complete?cc=ABCDEFG" valType="str"/>
     <Param name="Data file delimiter" updates="None" val="auto" valType="str"/>
     <Param name="Data filename" updates="None" val="u'data/%s_%s_%s' % (expInfo['participant'], expName, expInfo['date'])" valType="code"/>
     <Param name="Enable Escape" updates="None" val="True" valType="bool"/>
@@ -884,7 +884,6 @@
         <Param name="name" updates="None" val="complete_code" valType="code"/>
       </CodeComponent>
     </Routine>
-    <Routine name="completion_survey"/>
     <Routine name="feedback_test">
       <TextComponent name="feedback_test_text">
         <Param name="color" updates="constant" val="red" valType="str"/>
@@ -922,9 +921,9 @@
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="random" valType="str"/>
-      <Param name="nReps" updates="None" val="10" valType="code"/>
+      <Param name="nReps" updates="None" val="2" valType="code"/>
       <Param name="name" updates="None" val="trials_train_simon" valType="code"/>
-      <Param name="random seed" updates="None" val="10" valType="code"/>
+      <Param name="random seed" updates="None" val="15" valType="code"/>
     </LoopInitiator>
     <Routine name="trial_train_simon"/>
     <Routine name="feedback"/>
@@ -937,7 +936,7 @@
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="sequential" valType="str"/>
-      <Param name="nReps" updates="None" val="5" valType="code"/>
+      <Param name="nReps" updates="None" val="6" valType="code"/>
       <Param name="name" updates="None" val="trials_train_timing" valType="code"/>
       <Param name="random seed" updates="None" val="60" valType="code"/>
     </LoopInitiator>
@@ -963,7 +962,7 @@
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="random" valType="str"/>
-      <Param name="nReps" updates="None" val="2" valType="code"/>
+      <Param name="nReps" updates="None" val="4" valType="code"/>
       <Param name="name" updates="None" val="trials" valType="code"/>
       <Param name="random seed" updates="None" val="15" valType="code"/>
     </LoopInitiator>
@@ -972,6 +971,5 @@
     <LoopTerminator name="trials"/>
     <Routine name="block_note"/>
     <LoopTerminator name="blocks"/>
-    <Routine name="completion_survey"/>
   </Flow>
 </PsychoPy2experiment>
