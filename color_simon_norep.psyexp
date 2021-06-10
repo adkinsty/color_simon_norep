@@ -98,7 +98,7 @@
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="0.0" valType="num"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val="1" valType="num"/>
+        <Param name="stopVal" updates="constant" val=".6" valType="num"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
         <Param name="text" updates="set every frame" val="$finger_text" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
@@ -443,7 +443,6 @@
         <Param name="name" updates="None" val="block_note_code" valType="code"/>
       </CodeComponent>
     </Routine>
-    <Routine name="demographics"/>
     <Routine name="instructions_simon">
       <TextComponent name="instruct_text_simon">
         <Param name="color" updates="constant" val="black" valType="str"/>

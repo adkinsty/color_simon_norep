@@ -1610,7 +1610,7 @@ function trialRoutineEachFrame(snapshot) {
       trial_finger.setAutoDraw(true);
     }
 
-    frameRemains = 0.0 + 1.0 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    frameRemains = 0.0 + 0.6 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (trial_finger.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       trial_finger.setAutoDraw(false);
     }
